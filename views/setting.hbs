@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="css/style1.css">
+    <title>Home</title>
+</head>
+
+<body>
+    {{>navbar}}
+    <div class="root">
+        <div class="sidenav">
+            <a href="/settings" class="active">Profile</a>
+            <hr>
+            <a href="/liked">Liked Posts</a>
+            <hr>
+            <a href="/bookmarks">Bookmarked Posts</a>
+            <hr>
+            <a href="/resetpass">Reset Password</a>
+            <hr>
+            <a href="/logout">Logout</a>
+            <hr>
+            <a>Delete Account</a>
+        </div>
+        <div class="main">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row m-b-r m-t-3 pb-3">
+                        <div class="col-md-2 offset-md-1">
+                            <img src="../img/user.png" alt=""
+                                class="img-circle img-fluid" style="border-radius:50% ;">
+                        </div>  
+                        <div class="col-md-9 p-t-2">
+                            <h3>{{user.name}} <sup><i class="fa-solid fa-pen-to-square edit"></i></sup> </h3>
+                            <ul class="flex-menu">
+						<li><strong>{{no_post}}</strong> posts</li>
+						<li><strong>{{no_fol}}</strong> followers</li>
+						<li><strong>{{no_foling}}</strong> following</li>
+					</ul>
+                        </div>
+                    </div>
+
+                    <div class="row lighter">
+                        {{#posts}}
+                        <div class="col-xs-4 my-2 center">
+                            <div class="view overlay hm-black-light m-b-2">
+                                <img src="../posts/{{photo}}"
+                                    class="img" alt="">
+                            </div>
+                        </div>
+                        {{/posts}}
+                    </div>
+                </div>
+                {{#no_l}}
+                <div id="myalert" style="position:relative;">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <div>You have 0 liked posts</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{/no_l}}
+                {{#no_b}}
+                <div id="myalert" style="position:relative;">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <div>You have 0 bookmarked posts</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                {{/no_b}}
+                <div class="row">
+                    {{#data}}
+                    <div class="col-md-10 my-2 mx-auto">
+                        <div class="card" style="">
+                            <div class="card-body">
+                                <h5 class="card-title" style="display: inline;">{{postedBy.name}}</h5>
+                                <img src="../posts/{{photo}}" class="card-img-top" alt="...">
+                                <p class="card-text">{{date}}</p>
+                                <p class="card-text">{{caption}}</p>
+                                <p class="card-text">{{hash}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/data}}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

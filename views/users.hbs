@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="css/style1.css">
+    <title>Home</title>
+</head>
+
+<body>
+    {{>navbar}}
+    <div class="root">
+    <div class="container-fluid">
+        <div class="row">
+            {{#data}}
+            <div class="col-xs-10 my-2 mx-auto">
+                <div class="card" style="">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h5 class="card-title" style="display: inline;">{{name}}</h5>
+                            </div>
+                            <div class="col-xs-6 bookm">
+                            {{#if ../follows}}
+                            <button class="ms-5 btn small f" id="{{_id}}">following</button>
+                            {{else}}
+                            <button class="ms-5 btn small f" id="{{_id}}">follow</button>
+                            {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/data}}
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+    <title>Add Post</title>
+</head>
+<body>
+    <div class="root">
+    <input type="hidden" id="err" name="{{error}}">
+    <div id="myalert"></div>
+    <div class="center-big">
+        <form action="/addp" method="POST" class="form" enctype="multipart/form-data">
+            <label for="img">Photo</label>
+            <input type="file" name="img" id="img" autocomplete="off" autofocus>
+            <label for="pass">Caption</label>
+            <input type="text" name="caption" id="caption" autocomplete="off">
+            <label for="hash">HashTag</label>
+            <input type="text" name="hash" id="hash" autocomplete="off">
+            <button class="btn" type="submit">Add Post</button>
+      </form>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

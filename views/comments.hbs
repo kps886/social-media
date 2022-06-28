@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="css/style1.css">
+    <title>Home</title>
+</head>
+
+<body>
+    {{>navbar}}
+    <div class="root">
+        <div class="container-fluid">
+            {{#no_c}}
+            <div id="myalert" style="position:relative;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <div>Your post has 0 comments</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {{/no_c}}
+            {{#data}}
+            <div class="row">
+                <div class="jumbotron jumbotron-fluid mt-3">
+                    <div class="container py-2 px-1 mx-auto">
+                        <div class="row pb-2">
+                            <div class="col-xs-6">
+                                {{#if commentedBy.name}}
+                                <h4>{{commentedBy.name}}</h4>
+                                {{else}}
+                                <h4>Deleted User</h4>
+                                {{/if}}
+                            </div>
+                            <div class="col-xs-6 bookm">
+                                <form action="/dcomments" class="mx-auto" method="post">
+                                    <input type="hidden" name="id" value="{{_id}}">
+                                    <input type="submit" class="btn" style="font-size: 11px;" value="Delete comment">
+                                </form>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <p class="lead">comment:- {{comment}}</p>
+                            </div>
+                            <div class="col-xs-6 bookm">
+                                <form action="/buser" class="mx-auto" method="post">
+                                    <input type="hidden" name="id" value="{{commentedBy._id}}">
+                                    <input type="submit" class="btn" style="font-size: 11px;" value="Block User">
+                                </form>
+                            </div>                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/data}}
+        </div>
+    </div>
+</body>
+
+</html>

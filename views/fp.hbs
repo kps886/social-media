@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    {{>links}}
+     <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+</head>
+<body>
+    <div class="root">
+    <input type="hidden" id="err" name="{{text}}">
+    <div id="myalert" style="width: 50% ;"></div>
+    <div class="center">
+        
+        <form class="form" action="/forgotpass" method="post">
+        <p><label for="email">Email-Id</label></p>
+        <p><input type="email" name="email" id="email" autocomplete="off" autofocus placeholder="Enter your email id here"></p>
+        <p><button class="btn" type="submit">Send Link</button></p>  
+        <a href="/" class="btn">Go Back</a>
+   
+      </form>
+    </div>
+        
+    </div>
+    <script>
+        let error = document.querySelector("#err")
+        // console.log(error.attributes.name)
+        const alertPlaceholder = document.getElementById('myalert')
+        
+        
+        
+
+        const alert = () => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-{{style}} alert-dismissible" role="alert">`,
+                `   <div>{{text}}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
+
+            alertPlaceholder.append(wrapper)
+        }
+        var errval=error.getAttribute("name")
+        if (errval != "") {
+            alert()
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    {{>links}}
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+</head>
+<body>
+    <div class="root">
+        <input type="hidden" id="err" name="{{error}}">
+        <div id="myalert"></div>
+        <div class="center">
+            <form class="form" action="/" method="post">
+            <p><label for="email">Email-Id</label></p>
+            <p><input type="email" name="email" id="email" autocomplete="off" autofocus></p>
+            <p><label for="pass">Password</label></p>
+            <p><input type="password" name="pass" id="pass" autocomplete="off"></p>
+            <button class="btn" type="submit">Login</button>
+            <p class="p">Don't have an account?<a class="link" href="/register">Register</a></p>
+            <p class="p">Forgot password?<a class="link" href="/forgotpass">Reset</a></p>
+        </form>
+        </div>
+    </div>
+    <script>
+        let error = document.querySelector("#err")
+        // console.log(error.attributes.name)
+        const alertPlaceholder = document.getElementById('myalert')
+        
+        
+        
+
+        const alert = () => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-danger alert-dismissible" role="alert">`,
+                `   <div>{{error}}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
+
+            alertPlaceholder.append(wrapper)
+        }
+        var errval=error.getAttribute("name")
+        if (errval != "") {
+            alert()
+        }
+    </script>
+</body>
+</html>

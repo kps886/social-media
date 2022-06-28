@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="css/style1.css">
+    <title>Home</title>
+</head>
+
+<body>
+    {{>navbar}}
+    <div class="root">
+    <div class="container-fluid">
+        {{#no_p}}
+        <div id="myalert" style="position:relative;">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <div>You have 0 posts</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        {{/no_p}}
+        <div class="row">
+            {{!-- {{log data.[0].like}} --}}
+            {{#data}}
+            <div class="col-md-10 my-2 mx-auto">
+                <div class="card" style="border-radius:25px">
+                    <div class="card-body">
+                        <h5 class="card-title" style="display: inline;">{{postedBy.name}}</h5>
+                        <img src="../posts/{{photo}}" class="card-img-top" alt="...">
+                        {{#if ../login}}
+                        <div class="row">
+                            <div class="col-xs-6">
+                                {{#if liked}}
+                                <i class="fa-solid fa-heart like red" id="{{_id}}"></i>  <span id="s{{_id}}">{{like}}</span>
+                                {{else}}
+                                <i class="fa-regular fa-heart like" id="{{_id}}"></i>  <span id="s{{_id}}">{{like}}</span>
+                                {{/if}}
+                            </div>
+                            <div class="col-xs-6 bookm">
+                                {{#if booked}}
+                                <i class="fa-solid book fa-bookmark" id="{{_id}}"></i>
+                                {{else}}
+                                <i class="fa-regular book fa-bookmark" id="{{_id}}"></i>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/if}}
+                        <p class="card-text">{{date}}</p>
+                        <p class="card-text">{{caption}}</p>
+                        <p class="card-text">{{hash}}</p>
+                        {{#../my_p}}
+                            <form action="/scomment" method="post">
+                                <input type="hidden" name="id" value="{{_id}}">
+                                <input type="submit" class="btn" value="Show all comments">
+                            </form>
+                            <form action="/dpost" method="post">
+                                <input type="hidden" name="id" value="{{_id}}">
+                                <input type="submit" class="btn" value="delete post">
+                            </form>
+                        {{else}}
+                            {{#if ../login}}
+                                <form id="com">
+                                    <input type="hidden" id="hid" value="{{_id}}" name="postid">
+                                    <input type="text" name="coment" id="coment" placeholder="comment here....." autocomplete="off">
+                                </form>
+                            {{/if}}
+                        {{/../my_p}}
+                    </div>
+                </div>
+            </div>
+            {{/data}}
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
