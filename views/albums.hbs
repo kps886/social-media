@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{>links}}
+    <link rel="stylesheet" href="http://localhost:3000/css/style1.css">
+    <title>Home</title>
+</head>
+
+<body>
+    {{>navbar}}
+    <div class="root">
+        <div class="container-fluid">
+            {{#no_a}}
+            <div id="myalert" style="position:relative;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <div>There are 0 Albums.
+                        <p>If you want to create One <a href="/createalbum">Click Here</a></p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {{/no_a}}
+            {{#no_ph}}
+            <div id="myalert" style="position:relative;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <div>There are 0 Photos in this album
+                        <p>If you want to add photo <a href="/addphoto/{{id}}">Click Here</a></p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            {{/no_ph}}
+            <div class="row">
+                {{#if albums}}
+                {{#data}}
+                <div class="col-md-3 my-2">
+                    <div class="card album" id="{{_id}}">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/1980×1600/?{{name}}" class="card-img-top" alt="..." height="300px">
+                            <h5 class="card-title t-c">{{name}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {{/data}}
+                {{/if}}
+                {{#if photos}}
+                {{#data}}
+                <div class="col-md-4 my-2">
+                    <div class="card" id="{{_id}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{postedBy.name}}</h5>
+                            <img src="http://localhost:3000/posts/{{name}}" class="card-img-top" alt="..." height="300px">
+                            <p class="card-text">{{postedAt}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{/data}}
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

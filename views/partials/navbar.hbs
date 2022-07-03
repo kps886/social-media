@@ -1,0 +1,75 @@
+<nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+    {{#if photos}}
+    <h3 class="navbar-brand my-auto">{{data.[0].albumId.name}}</h3>
+    {{else}}
+    <h3 class="navbar-brand my-auto">Social Networking</h3>
+    {{/if}}
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link btn-nav active my-auto" aria-current="page" href="/home">Home</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto my-auto">
+              <li><a class="nav-link active btn-nav mx-1 my-auto" style="text-decoration:none" href="/album">Albums</a></li>
+        {{#if login}}
+        <li><div class="dropdown">
+          <button class="dropbtn">Account</button>
+          <div class="dropdown-content">
+        {{#if my_p}}
+          <a href="/addp">Add post</a>
+          <hr>
+        {{else}}
+            <a href="/myp">My posts</a>
+            <hr>
+        {{/if}}
+        {{#if my_c}}
+        {{else}}
+            <a href="/mycomments">My comments</a>
+            <hr>
+        {{/if}}
+            {{#if photos}}
+            <a href="/addphoto/{{id}}">Add Photo</a>
+            {{else}}
+            <hr>
+              <a href="/createalbum">Create Album</a>
+              {{#if albums}}
+              {{else}}
+              <hr>
+              {{/if}}
+            {{/if}}
+            <hr>
+            <a href="/following">Following</a>
+            <hr>
+            <a href="/users">People</a>
+            <hr>
+            <a href="/settings">Settings</a>
+          </div>
+        </div></li>
+        {{else}}
+        <li><a class="nav-link active btn-nav mx-1 my-auto" style="text-decoration:none" href="/register">Register</a>
+        </li>
+        <li><a class="nav-link active btn-nav mx-1 my-auto" style="text-decoration:none" href="/">Login</a></li>
+        {{/if}}
+      </ul>
+      <form class="form-inline" action="/search" method="post">
+        <input class="me-2" type="search" name="search" placeholder="Search" autocomplete="off">
+        <div class="dropdown">
+          <button class="dropbtn">Search</button>
+          <div class="dropdown-content xyz">
+          <input class="dp" type="submit" name="action" style="width:100% ;" value="#tag">
+          <hr>
+          <input class="dp" type="submit" name="action" value="Albums">
+          <hr>
+          <input class="dp" type="submit" name="action" style="width:100% ;" value="People">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>

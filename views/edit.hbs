@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    {{>links}}
+    <link rel="stylesheet" href="http://localhost:3000/css/style.css">
+</head>
+<body>
+    <div class="root">
+    <input type="hidden" id="err" name="{{error}}">
+    <div id="myalert"></div>
+    <div class="center-big">
+        <form action="/edit" method="POST" class="form">
+            <label for="email">UserName</label>
+            <input type="text" name="name" id="name" placeholder="{{user.name}}" autocomplete="off">
+            <button class="btn" type="submit">Edit</button>
+      </form>
+      
+    </div>
+    </div>
+    <script>
+        let error = document.querySelector("#err")
+        // console.log(error.attributes.name)
+        const alertPlaceholder = document.getElementById('myalert')
+        
+        
+        
+
+        const alert = () => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-danger alert-dismissible" role="alert">`,
+                `   <div>{{error}}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
+
+            alertPlaceholder.append(wrapper)
+        }
+        var errval=error.getAttribute("name")
+        if (errval != "") {
+            alert()
+        }
+    </script>
+</body>
+</html>
